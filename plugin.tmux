@@ -22,7 +22,7 @@ main() {
   done
 
   key_binding=$(get_tmux_option "@bw-key" "b")
-  tmux bind-key "$key_binding" split-window -l 10 "$CURRENT_DIR/scripts/main.sh"
+  tmux bind "$key_binding" split-window -l 10 "$CURRENT_DIR/scripts/main.sh"
 }
 
 main "$@"
