@@ -7,7 +7,7 @@ source "./utils.sh"
 is_authenticated() {
   status=$(bw status | jq '.status')
   [[ "$status" != "\"unauthenticated\"" ]] && true
-  [[ "$status" != "\"unlocked\"" ]] && true
+  [[ "$status" != "\"locked\"" ]] && true
 }
 
 # Get bitwarden items
@@ -32,7 +32,7 @@ get_password() {
 
 main() {
   declare -A TMUX_OPTS=(
-    ["@bw-session"]=$(get_tmux_option "@bw-session" $BW_SESSION)
+    ["@bw-session"]=$(get_tmux_option "@bw-session" "$BW_SESSION")
     ["@bw-copy-to-clipboard"]=$(get_tmux_option "@bw-copy-to-clipboard" "off")
   )
 
