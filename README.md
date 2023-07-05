@@ -7,12 +7,22 @@ You need to have:
 * [fzf](https://github.com/junegunn/fzf)
 * bash > 4.0
 
+```bash
+# bitwarden cli
+npm install -g @bitwarden/cli
+
+# macos
+brew install jq
+brew install fzf
+btew install bash # make sure bash > 4.0
+```
+
 ## Install
 
 ### Tmux Plugin Manager (recommended)
 1. In your `.tmux.conf` add the plugin to the list.
 ```
-set -g @plugin 'Alkindi42/tmux-bitwarden'
+set -g @plugin 'ted-vo/tmux-bitwarden'
 ```
 2. Type `prefix + I` to install the plugin.
 
@@ -39,7 +49,7 @@ If you have not configured your bitwarden session (`BW_SESSION`), you will be pr
 ```
 set -g @bw-key 'T'
 ```
-Default: `u`
+Default: `b`
 
 ### Define Bitwarden session
 To avoid re-entering your master password before each selection, you can define your [session Bitwarden](https://bitwarden.com/help/article/cli/#session-management).
@@ -47,7 +57,7 @@ Your `BW_SESSION` comes from the result of the `login` command.
 ```
 set -g @bw-session 'BW_SESSION'
 ```
-If the `BW_SESSION` variable exists in your environment variable then it will be used.
+If the `BW_SESSION` variable exists in your environment variable (load from root shell) then it will be used.
 
 ### Copy the password to the clipboard
 By default, after selection, the password is sent in the last pane. If you want to have it in your clipboard you have to activate the option:
