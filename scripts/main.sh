@@ -5,7 +5,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 source "./utils.sh"
 
 is_authenticated() {
-  [[ $(bw status | jq '.status') != "\"unauthenticated\"" ]] && true
+  local status=$(bw status | jq '.status')
+  ([[ $status != "\"unauthenticated\"" ]] || [[ $status != "\"unlocked\""]]) && true
 }
 
 # Get bitwarden items
