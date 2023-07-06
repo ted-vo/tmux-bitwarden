@@ -13,12 +13,12 @@ is_authenticated() {
 # Get bitwarden items
 get_bw_items() {
   local session="$1"
-  filter='map({ (.name|tostring): .login.password })|add'
-
+  # shellcheck disable=SC2016
+  pileline='map(.login.username as $u | {(.name|tostring|=.+ " [" + $u + "]"): .login.password})|add'
   if [[ -z "$session" ]]; then
-    bw list items | jq -r "$filter"
+    bw list items | jq -r "$pileline"
   else
-    bw list items --session "$session" | jq -r "$filter"
+    bw list items --session "$session" | jq -r "$pileline"
   fi
 }
 
